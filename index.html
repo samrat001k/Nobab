@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নবাব — সব ধরনের জিনিস, এক ঠিকানায়</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14162B;
+    --navy-2:#1D2044;
+    --cream:#F4EEDD;
+    --marigold:#E8A33D;
+    --marigold-dark:#C17F1F;
+    --gadget-teal:#2E9D9D;
+    --craft-clay:#C1502E;
+    --tee-plum:#7A4B8C;
+    --line:rgba(244,238,221,0.14);
+    --font-display:'Baloo Da 2', 'Space Grotesk', sans-serif;
+    --font-body:'Hind Siliguri', 'Space Grotesk', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  section[id], div[id]{scroll-margin-top:90px;}
+  body{
+    background:var(--navy);
+    color:var(--cream);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- Signboard border pattern ---------- */
+  .signboard-edge{
+    height:10px;
+    width:100%;
+    background:repeating-linear-gradient(135deg,
+      var(--marigold) 0 14px,
+      var(--craft-clay) 14px 28px,
+      var(--gadget-teal) 28px 42px,
+      var(--tee-plum) 42px 56px);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,22,43,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1200px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:1.6rem;
+    letter-spacing:0.5px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:8px;
+    background:conic-gradient(var(--marigold),var(--craft-clay),var(--gadget-teal),var(--tee-plum),var(--marigold));
+    display:inline-block;
+    transform:rotate(-6deg);
+  }
+  nav ul{
+    list-style:none; display:flex; gap:34px; align-items:center;
+    font-weight:600; font-size:0.98rem;
+  }
+  nav ul li a{
+    position:relative; padding:6px 2px; transition:color .2s;
+  }
+  nav ul li a:hover{color:var(--marigold);}
+  nav ul li a::after{
+    content:''; position:absolute; left:0; bottom:-3px;
+    width:0; height:2px; background:var(--marigold);
+    transition:width .25s;
+  }
+  nav ul li a:hover::after{width:100%;}
+  .nav-cta{
+    display:flex; gap:14px; align-items:center;
+  }
+  .icon-btn{
+    width:38px;height:38px;border-radius:10px;
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    transition:background .2s, transform .2s;
+  }
+  .icon-btn:hover{background:var(--marigold);color:var(--navy);transform:translateY(-2px);}
+
+  /* ---------- HERO : hand-painted signboard directory ---------- */
+  .hero{
+    max-width:1200px; margin:0 auto;
+    padding:70px 28px 40px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:50px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    font-weight:700; color:var(--marigold);
+    letter-spacing:2px; text-transform:uppercase;
+    font-size:0.78rem; margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:''; width:26px; height:2px; background:var(--marigold);
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:3.1rem;
+    line-height:1.15;
+    margin-bottom:20px;
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,var(--marigold),var(--craft-clay));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p{
+    font-size:1.08rem; opacity:0.82; max-width:480px; margin-bottom:30px;
+  }
+  .hero-buttons{display:flex; gap:16px;}
+  .btn{
+    padding:14px 26px; border-radius:12px; font-weight:700; font-size:0.98rem;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary{
+    background:var(--marigold); color:var(--navy);
+    box-shadow:0 8px 20px -6px rgba(232,163,61,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-3px);}
+  .btn-ghost{
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--marigold); color:var(--marigold);}
+
+  /* signboard visual */
+  .signboard{
+    position:relative;
+    background:var(--navy-2);
+    border:3px solid var(--marigold);
+    border-radius:18px;
+    padding:26px;
+    transform:rotate(2deg);
+    box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+  .signboard::before{
+    content:'০১';
+    position:absolute; top:-18px; left:24px;
+    background:var(--craft-clay);
+    color:var(--cream);
+    font-family:var(--font-display); font-weight:700;
+    padding:4px 12px; border-radius:8px; font-size:0.85rem;
+    transform:rotate(-4deg);
+  }
+  .signboard-title{
+    font-family:var(--font-display); font-weight:700;
+    font-size:1.1rem; color:var(--marigold); margin-bottom:16px;
+    text-align:center; letter-spacing:1px;
+  }
+  .sign-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:13px 10px; border-bottom:1px dashed var(--line);
+    font-weight:600;
+  }
+  .sign-row:last-child{border-bottom:none;}
+  .sign-tag{
+    font-size:0.72rem; font-weight:700; padding:4px 10px;
+    border-radius:20px; letter-spacing:0.5px;
+  }
+  .tag-gadget{background:rgba(46,157,157,0.2); color:var(--gadget-teal);}
+  .tag-craft{background:rgba(193,80,46,0.22); color:#E8875F;}
+  .tag-tee{background:rgba(122,75,140,0.25); color:#C89FDA;}
+
+  /* ---------- CATEGORY SECTIONS ---------- */
+  .category{
+    padding:80px 28px;
+    position:relative;
+  }
+  .category-inner{
+    max-width:1200px; margin:0 auto;
+  }
+  .cat-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:36px; flex-wrap:wrap; gap:16px;
+  }
+  .cat-label{
+    font-family:var(--font-display); font-weight:800;
+    font-size:2.1rem;
+  }
+  .cat-sub{opacity:0.75; max-width:420px; font-size:0.96rem;}
+  .cat-link{
+    font-weight:700; font-size:0.92rem;
+    border-bottom:2px solid currentColor;
+    padding-bottom:2px;
+  }
+
+  #gadgets{background:linear-gradient(180deg, var(--navy) 0%, #10262A 100%);}
+  #gadgets .cat-label, #gadgets .cat-link{color:var(--gadget-teal);}
+
+  #craft{background:linear-gradient(180deg, #10262A 0%, #2A1712 100%);}
+  #craft .cat-label, #craft .cat-link{color:#E8875F;}
+
+  #tees{background:linear-gradient(180deg, #2A1712 0%, #1C1330 100%);}
+  #tees .cat-label, #tees .cat-link{color:#C89FDA;}
+
+  .card-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .card{
+    background:rgba(244,238,221,0.04);
+    border:1px solid var(--line);
+    border-radius:16px; overflow:hidden;
+    transition:transform .25s, border-color .25s;
+  }
+  .card:hover{transform:translateY(-6px); border-color:var(--marigold);}
+  .card-img{
+    height:140px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.4rem;
+  }
+  #gadgets .card-img{background:radial-gradient(circle at 30% 30%, rgba(46,157,157,0.35), rgba(46,157,157,0.08));}
+  #craft .card-img{background:radial-gradient(circle at 30% 30%, rgba(193,80,46,0.35), rgba(193,80,46,0.08));}
+  #tees .card-img{background:radial-gradient(circle at 30% 30%, rgba(122,75,140,0.35), rgba(122,75,140,0.08));}
+  .card-body{padding:16px;}
+  .card-body h4{font-size:0.98rem; font-weight:600; margin-bottom:6px;}
+  .card-body .price{font-weight:700; color:var(--marigold); font-size:0.95rem;}
+
+  /* ---------- FILTER CHIPS ---------- */
+  .chip-row{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px;
+  }
+  .chip{
+    padding:8px 18px; border-radius:20px; font-size:0.85rem; font-weight:600;
+    border:1px solid var(--line); opacity:0.75;
+    transition:opacity .2s, border-color .2s, background .2s;
+    cursor:pointer;
+  }
+  .chip.active{opacity:1;}
+  #gadgets .chip.active{background:rgba(46,157,157,0.18); border-color:var(--gadget-teal); color:var(--gadget-teal);}
+  #craft .chip.active{background:rgba(193,80,46,0.18); border-color:#E8875F; color:#E8875F;}
+  #tees .chip.active{background:rgba(122,75,140,0.2); border-color:#C89FDA; color:#C89FDA;}
+  .chip:hover{opacity:1;}
+
+  /* ---------- CONTACT ---------- */
+  #contact{
+    background:linear-gradient(180deg, #1C1330 0%, var(--navy) 100%);
+    padding:80px 28px;
+  }
+  .contact-grid{
+    max-width:1200px; margin:0 auto;
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px;
+  }
+  .contact-info h2{
+    font-family:var(--font-display); font-weight:800; font-size:2rem; margin-bottom:14px;
+    color:var(--marigold);
+  }
+  .contact-info p{opacity:0.78; margin-bottom:24px; max-width:400px;}
+  .contact-item{
+    display:flex; align-items:center; gap:12px; margin-bottom:16px; font-weight:600; font-size:0.95rem;
+  }
+  .contact-item .ic{
+    width:36px;height:36px;border-radius:10px;background:rgba(232,163,61,0.15);
+    display:flex;align-items:center;justify-content:center; color:var(--marigold); font-size:1rem;
+  }
+  .contact-form{
+    background:rgba(244,238,221,0.04); border:1px solid var(--line);
+    border-radius:18px; padding:30px;
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+  .contact-form input, .contact-form textarea{
+    width:100%; background:rgba(244,238,221,0.06); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px; color:var(--cream); font-family:var(--font-body);
+    font-size:0.92rem; outline:none; transition:border-color .2s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus{border-color:var(--marigold);}
+  .contact-form textarea{margin-bottom:18px; resize:vertical; min-height:100px;}
+  .contact-form .btn-primary{width:100%; justify-content:center; border:none; cursor:pointer;}
+
+  /* ---------- SOCIAL STRIP ---------- */
+  .social-strip{
+    padding:70px 28px;
+    background:var(--navy-2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .social-inner{
+    max-width:1200px; margin:0 auto; text-align:center;
+  }
+  .social-inner h3{
+    font-family:var(--font-display); font-size:1.7rem; margin-bottom:10px;
+  }
+  .social-inner p{opacity:0.75; margin-bottom:34px;}
+  .social-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  .social-card{
+    border:1px solid var(--line); border-radius:14px; padding:22px 16px;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    transition:background .2s, transform .2s;
+  }
+  .social-card:hover{background:rgba(244,238,221,0.05); transform:translateY(-4px);}
+  .social-glyph{
+    width:44px;height:44px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800; font-size:1.1rem;
+  }
+  .glyph-gadget{background:rgba(46,157,157,0.2); color:var(--gadget-teal);}
+  .glyph-craft{background:rgba(193,80,46,0.22); color:#E8875F;}
+  .glyph-tee{background:rgba(122,75,140,0.25); color:#C89FDA;}
+  .glyph-insta{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff;}
+  .social-card .handle{font-weight:700; font-size:0.9rem;}
+  .social-card .label{font-size:0.78rem; opacity:0.65;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:50px 28px 30px;}
+  .footer-inner{
+    max-width:1200px; margin:0 auto;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    border-top:1px solid var(--line); padding-top:30px;
+    font-size:0.85rem; opacity:0.6;
+  }
+
+  @media (max-width:900px){
+    nav ul{display:none;}
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero h1{font-size:2.2rem;}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .social-grid{grid-template-columns:repeat(2,1fr);}
+    .signboard{transform:rotate(0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="signboard-edge"></div>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo"><span class="logo-mark"></span>নবাব</div>
+    <nav>
+      <ul>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('gadgets').scrollIntoView({behavior:'smooth'})">গ্যাজেটস</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('craft').scrollIntoView({behavior:'smooth'})">হস্তশিল্প</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('tees').scrollIntoView({behavior:'smooth'})">টি-শার্ট</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('social').scrollIntoView({behavior:'smooth'})">সোশ্যাল</a></li>
+        <li><a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">যোগাযোগ</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <div class="icon-btn">🔍</div>
+      <div class="icon-btn">🛒</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">এক ব্র্যান্ড, তিনটা দুনিয়া</div>
+    <h1>যা লাগবে সবই পাবে, <span>এক ঠিকানায়</span></h1>
+    <p>গ্যাজেট থেকে হাতে বানানো শিল্প, আবার নিজের ডিজাইনের টি-শার্ট — সব কিছু একটাই বিশ্বস্ত জায়গা থেকে, সারা বাংলাদেশ জুড়ে ডেলিভারি সহ।</p>
+    <div class="hero-buttons">
+      <a href="javascript:void(0)" onclick="document.getElementById('gadgets').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">শপিং শুরু করি →</a>
+      <a href="javascript:void(0)" onclick="document.getElementById('social').scrollIntoView({behavior:'smooth'})" class="btn btn-ghost">সোশ্যাল পেজ দেখুন</a>
+    </div>
+  </div>
+
+  <div class="signboard">
+    <div class="signboard-title">✦ আমাদের দোকানের তালিকা ✦</div>
+    <div class="sign-row">
+      <span>ইয়ারবাডস, চার্জার, মোবাইল কভার</span>
+      <span class="sign-tag tag-gadget">গ্যাজেট</span>
+    </div>
+    <div class="sign-row">
+      <span>পাটের ব্যাগ, মাটির শোপিস, নকশিকাঁথা</span>
+      <span class="sign-tag tag-craft">হস্তশিল্প</span>
+    </div>
+    <div class="sign-row">
+      <span>কাস্টম প্রিন্ট, গ্রাফিক টি, ওভারসাইজড</span>
+      <span class="sign-tag tag-tee">টি-শার্ট</span>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="gadgets">
+  <div class="category-inner">
+    <div class="cat-head">
+      <div>
+        <div class="cat-label">গ্যাজেটস</div>
+        <p class="cat-sub">দৈনন্দিন ব্যবহারের জন্য বাছাই করা টেক এক্সেসরিজ — যাচাই করা মানের, রিজনেবল দামে।</p>
+      </div>
+      <a href="javascript:void(0)" class="cat-link">সব গ্যাজেট দেখুন →</a>
+    </div>
+    <div class="chip-row">
+      <span class="chip active">সব</span>
+      <span class="chip">অডিও</span>
+      <span class="chip">চার্জিং</span>
+      <span class="chip">মোবাইল কভার</span>
+      <span class="chip">ওয়্যারেবল</span>
+      <span class="chip">স্মার্ট হোম</span>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-img">🎧</div><div class="card-body"><h4>ওয়্যারলেস ইয়ারবাডস</h4><div class="price">৳১,২০০</div></div></div>
+      <div class="card"><div class="card-img">🔌</div><div class="card-body"><h4>ফাস্ট চার্জার ৩৩W</h4><div class="price">৳৯৫০</div></div></div>
+      <div class="card"><div class="card-img">📱</div><div class="card-body"><h4>ম্যাগসেফ কভার</h4><div class="price">৳৪৫০</div></div></div>
+      <div class="card"><div class="card-img">⌚</div><div class="card-body"><h4>স্মার্ট ব্যান্ড</h4><div class="price">৳১,৮৫০</div></div></div>
+      <div class="card"><div class="card-img">🔋</div><div class="card-body"><h4>পাওয়ার ব্যাংক ১০,০০০mAh</h4><div class="price">৳১,৪০০</div></div></div>
+      <div class="card"><div class="card-img">🖱️</div><div class="card-body"><h4>ওয়্যারলেস মাউস</h4><div class="price">৳৬৫০</div></div></div>
+      <div class="card"><div class="card-img">💡</div><div class="card-body"><h4>স্মার্ট LED বাল্ব</h4><div class="price">৳৭৫০</div></div></div>
+      <div class="card"><div class="card-img">🎙️</div><div class="card-body"><h4>ক্লিপ মাইক্রোফোন</h4><div class="price">৳৫৫০</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="craft">
+  <div class="category-inner">
+    <div class="cat-head">
+      <div>
+        <div class="cat-label">হস্তশিল্প</div>
+        <p class="cat-sub">দেশের কারিগরদের হাতে বানানো, প্রতিটা পিস আলাদা গল্প বলে।</p>
+      </div>
+      <a href="javascript:void(0)" class="cat-link">সব হস্তশিল্প দেখুন →</a>
+    </div>
+    <div class="chip-row">
+      <span class="chip active">সব</span>
+      <span class="chip">পাটজাত পণ্য</span>
+      <span class="chip">মাটির জিনিস</span>
+      <span class="chip">নকশিকাঁথা</span>
+      <span class="chip">গয়না</span>
+      <span class="chip">ঘর সাজানো</span>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-img">👜</div><div class="card-body"><h4>পাটের হাতব্যাগ</h4><div class="price">৳৮৫০</div></div></div>
+      <div class="card"><div class="card-img">🏺</div><div class="card-body"><h4>মাটির শোপিস</h4><div class="price">৳৬৫০</div></div></div>
+      <div class="card"><div class="card-img">🧵</div><div class="card-body"><h4>নকশিকাঁথা কুশন কভার</h4><div class="price">৳১,১০০</div></div></div>
+      <div class="card"><div class="card-img">📿</div><div class="card-body"><h4>কফি-গ্রাউন্ড জুয়েলারি</h4><div class="price">৳৩৫০</div></div></div>
+      <div class="card"><div class="card-img">🧺</div><div class="card-body"><h4>বাঁশের ঝুড়ি</h4><div class="price">৳৫৫০</div></div></div>
+      <div class="card"><div class="card-img">🕯️</div><div class="card-body"><h4>হাতে বানানো মোমবাতি সেট</h4><div class="price">৳৪৫০</div></div></div>
+      <div class="card"><div class="card-img">🖼️</div><div class="card-body"><h4>রিকশা-আর্ট ওয়াল হ্যাঙ্গিং</h4><div class="price">৳৯৫০</div></div></div>
+      <div class="card"><div class="card-img">🧶</div><div class="card-body"><h4>হাতে বোনা শাল</h4><div class="price">৳১,৩৫০</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="category" id="tees">
+  <div class="category-inner">
+    <div class="cat-head">
+      <div>
+        <div class="cat-label">টি-শার্ট</div>
+        <p class="cat-sub">নিজস্ব ডিজাইনের গ্রাফিক টি, প্রিমিয়াম কটন ফ্যাব্রিকে।</p>
+      </div>
+      <a href="javascript:void(0)" class="cat-link">সব টি-শার্ট দেখুন →</a>
+    </div>
+    <div class="chip-row">
+      <span class="chip active">সব</span>
+      <span class="chip">গ্রাফিক টি</span>
+      <span class="chip">ওভারসাইজড</span>
+      <span class="chip">কাস্টম প্রিন্ট</span>
+      <span class="chip">প্লেইন কটন</span>
+      <span class="chip">কাপল/ফ্যামিলি সেট</span>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="card-img">👕</div><div class="card-body"><h4>গ্রাফিক প্রিন্ট টি</h4><div class="price">৳৫৫০</div></div></div>
+      <div class="card"><div class="card-img">🎨</div><div class="card-body"><h4>কাস্টম ডিজাইন টি</h4><div class="price">৳৬৫০</div></div></div>
+      <div class="card"><div class="card-img">🖤</div><div class="card-body"><h4>ওভারসাইজড ফিট</h4><div class="price">৳৭৫০</div></div></div>
+      <div class="card"><div class="card-img">✍️</div><div class="card-body"><h4>ক্যালিগ্রাফি টি</h4><div class="price">৳৬০০</div></div></div>
+      <div class="card"><div class="card-img">👨‍👩‍👧</div><div class="card-body"><h4>ফ্যামিলি ম্যাচিং সেট</h4><div class="price">৳২,২০০</div></div></div>
+      <div class="card"><div class="card-img">🧢</div><div class="card-body"><h4>ম্যাচিং ক্যাপ কম্বো</h4><div class="price">৳৮৫০</div></div></div>
+      <div class="card"><div class="card-img">🌙</div><div class="card-body"><h4>ইসলামিক ক্যালিগ্রাফি টি</h4><div class="price">৳৬৫০</div></div></div>
+      <div class="card"><div class="card-img">📸</div><div class="card-body"><h4>নিজের ছবি দিয়ে প্রিন্ট</h4><div class="price">৳৭০০</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>যোগাযোগ করো</h2>
+      <p>অর্ডার নিয়ে প্রশ্ন থাকলে, বাল্ক অর্ডার করতে চাইলে, বা শুধু কথা বলতে চাইলে — আমরা আছি।</p>
+      <div class="contact-item"><span class="ic">📞</span> ০১৭XXXXXXXX (হোয়াটসঅ্যাপ / কল)</div>
+      <div class="contact-item"><span class="ic">✉️</span> hello@nabab.com.bd</div>
+      <div class="contact-item"><span class="ic">📍</span> ঢাকা, বাংলাদেশ — সারা দেশে ডেলিভারি</div>
+      <div class="contact-item"><span class="ic">🕒</span> প্রতিদিন সকাল ১০টা – রাত ১০টা</div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <input type="text" placeholder="তোমার নাম">
+        <input type="text" placeholder="ফোন নম্বর">
+      </div>
+      <div class="form-row">
+        <input type="text" placeholder="ইমেইল (ঐচ্ছিক)" style="grid-column:1 / -1;">
+      </div>
+      <textarea placeholder="তোমার মেসেজ লেখো..."></textarea>
+      <a href="javascript:void(0)" class="btn btn-primary">মেসেজ পাঠাও →</a>
+    </div>
+  </div>
+</section>
+
+<section class="social-strip" id="social">
+  <div class="social-inner">
+    <h3>আমাদের সোশ্যাল দুনিয়া</h3>
+    <p>প্রতিটা ক্যাটাগরির নিজস্ব ফেসবুক পেজ আছে — সেখান থেকে সরাসরি সাইটে চলে আসো।</p>
+    <div class="social-grid">
+      <a href="javascript:void(0)" class="social-card">
+        <div class="social-glyph glyph-gadget">f</div>
+        <div class="handle">গ্যাজেট পেজ</div>
+        <div class="label">Facebook</div>
+      </a>
+      <a href="javascript:void(0)" class="social-card">
+        <div class="social-glyph glyph-craft">f</div>
+        <div class="handle">হস্তশিল্প পেজ</div>
+        <div class="label">Facebook</div>
+      </a>
+      <a href="javascript:void(0)" class="social-card">
+        <div class="social-glyph glyph-tee">f</div>
+        <div class="handle">টি-শার্ট পেজ</div>
+        <div class="label">Facebook</div>
+      </a>
+      <a href="javascript:void(0)" class="social-card">
+        <div class="social-glyph glyph-insta">ig</div>
+        <div class="handle">মেইন ব্র্যান্ড</div>
+        <div class="label">Instagram</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>© ২০২৬ নবাব — সব ধরনের জিনিস, এক ঠিকানায়।</div>
+    <div>ডোমেইন • হোস্টিং • ডিজাইন মকআপ — শুধু ডেমো পারপাসে বানানো</div>
+  </div>
+</footer>
+
+</body>
+</html>
